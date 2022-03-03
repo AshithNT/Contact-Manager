@@ -63,7 +63,7 @@ DatabaseReference reference;
         Toast.makeText(getApplicationContext(),Uemail,Toast.LENGTH_LONG).show();
 
         recyclerView=findViewById(R.id.userlist);
-        database= FirebaseDatabase.getInstance().getReference("Users");
+        database= FirebaseDatabase.getInstance().getReference("users");
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
