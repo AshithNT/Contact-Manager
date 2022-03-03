@@ -17,16 +17,20 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+
 public class Login extends AppCompatActivity {
 EditText editText_Email,editText_Password;
 TextView textView_reg,textView_forgot;
 Button button_login;
 FirebaseAuth fAuth;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
 
         //startActivity(new Intent(getApplicationContext(),Register.class));
 
@@ -37,6 +41,12 @@ FirebaseAuth fAuth;
         Button login=(Button)findViewById(R.id.button_login);
 
         fAuth=FirebaseAuth.getInstance();
+
+      /*  if(fAuth.getCurrentUser() != null)
+        {
+            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            finish();
+        }*/
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,8 +69,11 @@ FirebaseAuth fAuth;
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if(task.isSuccessful()){
+
                             Toast.makeText(Login.this,"Logged in successfully",Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                            Intent i=new Intent(getApplicationContext(),MainActivity.class);
+                            i.putExtra("Uemail",mail);
+                            startActivity(i);
                         }else{
                             Toast.makeText(Login.this,"Error"+task.getException(),Toast.LENGTH_SHORT).show();
                         }

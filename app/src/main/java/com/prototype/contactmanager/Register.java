@@ -16,6 +16,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+
+
 public class Register extends AppCompatActivity {
     EditText editText_Email,editText_Password,editText_code;
     Button button_submit;
@@ -33,7 +35,7 @@ public class Register extends AppCompatActivity {
 
         fAuth= FirebaseAuth.getInstance();
 
-        if(fAuth.getCurrentUser() != null)
+      if(fAuth.getCurrentUser() != null)
         {
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
             finish();
@@ -65,8 +67,12 @@ public class Register extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
+
+
                             Toast.makeText(Register.this,"User Created",Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                            Intent i=new Intent(getApplicationContext(),MainActivity.class);
+                            i.putExtra("Uemail",mail);
+                            startActivity(i);
                         }else{
                             Toast.makeText(Register.this,"Error"+task.getException().getMessage(),Toast.LENGTH_SHORT).show();
 
